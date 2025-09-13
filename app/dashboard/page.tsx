@@ -177,8 +177,8 @@ export default async function DashboardPage() {
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Seus Aplicativos</h2>
                 <Badge variant="outline">
-                  {userApps.length} aplicativo{userApps.length !== 1 ? "s" : ""} disponível
-                  {userApps.length !== 1 ? "is" : ""}
+                  {userApps.length} aplicativo{userApps.length !== 1 ? "s" : ""}{" "}
+                  {userApps.length !== 1 ? "disponíveis" : "disponível"}
                 </Badge>
               </div>
 

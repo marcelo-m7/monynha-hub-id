@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic"
+
 export default async function HomePage() {
   const { userId } = await safeAuth()
 

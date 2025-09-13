@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server"
+import { safeAuth } from "@/lib/safe-auth"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,8 +8,18 @@ import { UserButton } from "@clerk/nextjs"
 import { Clock, CheckCircle, XCircle, ExternalLink, Settings } from "lucide-react"
 import Link from "next/link"
 
+interface UserApp {
+  id: string
+  app: {
+    name: string
+    category: string
+    description: string
+    url: string
+  }
+}
+
 export default async function DashboardPage() {
-  const { userId } = await auth()
+  const { userId } = await safeAuth()
 
   if (!userId) {
     redirect("/auth/sign-in")
@@ -61,7 +71,7 @@ export default async function DashboardPage() {
   }
 
   const appsByCategory =
-    userApps?.reduce((acc: any, userApp: any) => {
+    userApps?.reduce<Record<string, UserApp[]>>((acc, userApp) => {
       const category = userApp.app.category || "general"
       if (!acc[category]) {
         acc[category] = []
@@ -172,11 +182,11 @@ export default async function DashboardPage() {
                 </Badge>
               </div>
 
-              {Object.entries(appsByCategory).map(([category, apps]: [string, any]) => (
+              {Object.entries(appsByCategory).map(([category, apps]: [string, UserApp[]]) => (
                 <div key={category}>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">{categoryNames[category] || category}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {apps.map((userApp: any) => (
+                    {apps.map((userApp) => (
                       <Card key={userApp.id} className="hover:shadow-lg transition-all duration-200 hover:scale-105">
                         <CardHeader className="pb-3">
                           <CardTitle className="flex items-center gap-3">

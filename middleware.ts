@@ -1,17 +1,12 @@
-// import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
-// const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/admin(.*)"])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)", "/admin(.*)"])
 
-// export default clerkMiddleware(async (auth, req) => {
-//   if (isProtectedRoute(req)) {
-//     await auth.protect()
-//   }
-// })
-
-// Temporary simple middleware to test if the app loads
-export function middleware() {
-  // Do nothing for now
-}
+export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) {
+    await auth.protect()
+  }
+})
 
 export const config = {
   matcher: [

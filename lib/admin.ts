@@ -1,8 +1,8 @@
-import { auth } from "@clerk/nextjs/server"
+import { safeAuth } from "@/lib/safe-auth"
 import { createClient } from "@/lib/supabase/server"
 
 export async function checkAdminAccess() {
-  const { userId } = await auth()
+  const { userId } = await safeAuth()
 
   if (!userId) {
     return { isAdmin: false, user: null }

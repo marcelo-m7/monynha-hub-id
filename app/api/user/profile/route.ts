@@ -1,10 +1,10 @@
-import { auth } from "@clerk/nextjs/server"
+import { safeAuth } from "@/lib/safe-auth"
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 
 export async function GET() {
   try {
-    const { userId } = await auth()
+    const { userId } = await safeAuth()
 
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -28,7 +28,7 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
-    const { userId } = await auth()
+    const { userId } = await safeAuth()
 
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

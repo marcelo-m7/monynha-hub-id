@@ -165,11 +165,11 @@ export type NestedTranslationKey<T> = T extends object
 // Helper function to get nested translation
 export function t(key: string): string {
   const keys = key.split(".")
-  let value: any = pt
+  let value: unknown = pt
 
   for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
-      value = value[k]
+    if (value && typeof value === "object" && k in (value as Record<string, unknown>)) {
+      value = (value as Record<string, unknown>)[k]
     } else {
       console.warn(`Translation key not found: ${key}`)
       return key

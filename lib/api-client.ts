@@ -10,7 +10,7 @@ export class ApiClient {
     return response.json()
   }
 
-  static async post(endpoint: string, data: any) {
+  static async post<T>(endpoint: string, data: T): Promise<unknown> {
     const response = await fetch(`${this.baseUrl}/api${endpoint}`, {
       method: "POST",
       headers: {
@@ -24,7 +24,7 @@ export class ApiClient {
     return response.json()
   }
 
-  static async put(endpoint: string, data: any) {
+  static async put<T>(endpoint: string, data: T): Promise<unknown> {
     const response = await fetch(`${this.baseUrl}/api${endpoint}`, {
       method: "PUT",
       headers: {
@@ -66,7 +66,7 @@ export const adminApi = {
     return ApiClient.get(`/admin/users?${searchParams.toString()}`)
   },
   getApps: () => ApiClient.get("/admin/apps"),
-  createApp: (data: any) => ApiClient.post("/admin/apps", data),
+  createApp: (data: Record<string, unknown>) => ApiClient.post("/admin/apps", data),
   approveUser: (data: { requestId: string; userId: string; action: string; notes?: string }) =>
     ApiClient.post("/admin/approve-user", data),
 }

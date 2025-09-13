@@ -9,6 +9,9 @@ export default function SignUpPage() {
           <p className="text-gray-600">Crie sua conta</p>
         </div>
         <SignUp
+          redirectUrl="/dashboard"
+          afterSignUpUrl="/pending"
+          afterSignInUrl="/dashboard"
           appearance={{
             elements: {
               rootBox: "mx-auto",

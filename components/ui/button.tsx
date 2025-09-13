@@ -1,7 +1,7 @@
 import * as React from "react"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "ghost" | "link"
+  variant?: "default" | "outline" | "ghost" | "link" | "destructive"
   size?: "default" | "sm" | "lg" | "icon"
   asChild?: boolean
 }
@@ -16,6 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       outline: "border border-gray-300 bg-white hover:bg-gray-50",
       ghost: "hover:bg-gray-100",
       link: "text-blue-600 underline-offset-4 hover:underline",
+      destructive: "bg-red-600 text-white hover:bg-red-700",
     }
 
     const sizeClasses = {
@@ -28,9 +29,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
 
     if (asChild && React.isValidElement(children)) {
-      return React.cloneElement(children, {
-        ...children.props,
-        className: `${classes} ${children.props.className || ""}`,
+      const child = children as React.ReactElement<any>
+      return React.cloneElement(child, {
+        ...(child.props as any),
+        className: `${classes} ${(child.props as any).className || ""}`,
         ref,
       })
     }

@@ -47,7 +47,7 @@ To create a production build and preview it locally:
 
 ```bash
 pnpm run build
-pnpm start # defaults to http://localhost:3000
+pnpm start
 ```
 
 ## pnpm build approvals

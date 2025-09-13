@@ -9,6 +9,8 @@ export default function SignInPage() {
           <p className="text-gray-600">Entre na sua conta</p>
         </div>
         <SignIn
+          afterSignInUrl="/dashboard"
+          afterSignUpUrl="/pending"
           appearance={{
             elements: {
               rootBox: "mx-auto",

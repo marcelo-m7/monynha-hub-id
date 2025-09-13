@@ -28,3 +28,26 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## Local development
+
+```bash
+pnpm install
+pnpm dev
+```
+
+## Building for production
+
+```bash
+pnpm build
+pnpm start
+```
+
+## pnpm built dependencies
+
+pnpm 10 blocks lifecycle scripts by default. The list of packages that require builds is tracked in `package.json` under `pnpm.onlyBuiltDependencies`. If new dependencies require build scripts, update this list with:
+
+```bash
+pnpm approve-builds
+```
+

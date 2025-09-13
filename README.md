@@ -33,3 +33,29 @@ Continue building your app on:
 
 Authentication is handled by [Clerk](https://clerk.com) via a single middleware located at [`middleware.ts`](middleware.ts).
 This file protects routes like `/dashboard` and `/admin` and there are no other middleware files (such as a Supabase middleware) in the codebase.
+
+## Local development
+
+Install dependencies and start the development server:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+To create a production build and preview it locally:
+
+```bash
+pnpm run build
+pnpm start
+```
+
+## pnpm build approvals
+
+This project uses pnpm 10's `onlyBuiltDependencies` list to allow native modules such as `@swc/core`, `esbuild`, `sharp`, and `@parcel/watcher` to run their install scripts in CI environments. When adding new dependencies that require post-install builds, update the list by running:
+
+```bash
+pnpm approve-builds
+```
+
+Commit the updated `package.json` so the approved modules are permitted during deployment.

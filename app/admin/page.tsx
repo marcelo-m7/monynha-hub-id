@@ -7,6 +7,16 @@ import { UserButton } from "@clerk/nextjs"
 import { Users, Clock, CheckCircle, XCircle } from "lucide-react"
 import { ApprovalActions } from "@/components/admin/approval-actions"
 
+interface PendingRequest {
+  id: string
+  user_id: string
+  created_at: string
+  user_profile: {
+    full_name: string
+    email: string
+  }
+}
+
 export default async function AdminPage() {
   const { isAdmin } = await checkAdminAccess()
 
@@ -102,7 +112,7 @@ export default async function AdminPage() {
             <CardContent>
               {pendingRequests && pendingRequests.length > 0 ? (
                 <div className="space-y-4">
-                  {pendingRequests.map((request: any) => (
+                  {pendingRequests.map((request: PendingRequest) => (
                     <div key={request.id} className="flex items-center justify-between p-4 border rounded-lg bg-white">
                       <div className="flex-1">
                         <div className="flex items-center gap-3">

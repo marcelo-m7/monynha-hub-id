@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server"
+import { safeAuth } from "@/lib/safe-auth"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -6,7 +6,7 @@ import { Clock } from "lucide-react"
 import { UserButton } from "@clerk/nextjs"
 
 export default async function PendingPage() {
-  const { userId } = await auth()
+  const { userId } = await safeAuth()
 
   if (!userId) {
     redirect("/auth/sign-in")

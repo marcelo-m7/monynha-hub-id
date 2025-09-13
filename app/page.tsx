@@ -1,11 +1,11 @@
-import { auth } from "@clerk/nextjs/server"
+import { safeAuth } from "@/lib/safe-auth"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 
 export default async function HomePage() {
-  const { userId } = await auth()
+  const { userId } = await safeAuth()
 
   // Redirect authenticated users to dashboard
   if (userId) {

@@ -8,7 +8,10 @@ export default clerkMiddleware(
       await auth.protect()
     }
   },
-  { signInUrl: "/auth/sign-in" }
+  {
+    signInUrl: "/auth/sign-in",
+    signUpUrl: "/auth/sign-up",
+  }
 )
 
 export const config = {

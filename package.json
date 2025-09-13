@@ -15,6 +15,7 @@
     "@radix-ui/react-aspect-ratio": "latest",
     "@radix-ui/react-collapsible": "latest",
     "@radix-ui/react-dialog": "latest",
+    "@radix-ui/react-label": "^2.1.7",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@vitejs/plugin-react-swc": "latest",
@@ -50,6 +51,7 @@
     "yaml": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

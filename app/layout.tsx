@@ -16,13 +16,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+
+  const content = (
+    <html lang="pt-BR">
+      <body>
+        <Suspense fallback={null}>{children}</Suspense>
+      </body>
+    </html>
+  )
+
+  // During local builds the Clerk publishable key may be absent. In that case we
+  // skip the provider so the build can succeed, while still allowing deployments
+  // with the key set to wrap the app in `ClerkProvider`.
+  if (!publishableKey) {
+    return content
+  }
+
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!} localization={ptBR}>
-      <html lang="pt-BR">
-        <body>
-          <Suspense fallback={null}>{children}</Suspense>
-        </body>
-      </html>
+    <ClerkProvider publishableKey={publishableKey} localization={ptBR}>
+      {content}
     </ClerkProvider>
   )
 }

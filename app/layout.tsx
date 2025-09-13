@@ -16,13 +16,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!} localization={ptBR}>
-      <html lang="pt-BR">
-        <body>
-          <Suspense fallback={null}>{children}</Suspense>
-        </body>
-      </html>
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  const content = (
+    <html lang="pt-BR">
+      <body>
+        <Suspense fallback={null}>{children}</Suspense>
+      </body>
+    </html>
+  )
+  return publishableKey ? (
+    <ClerkProvider publishableKey={publishableKey} localization={ptBR}>
+      {content}
     </ClerkProvider>
+  ) : (
+    content
   )
 }

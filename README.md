@@ -28,3 +28,24 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## Development
+
+Install dependencies and run the project locally:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Create a production build and start it:
+
+```bash
+pnpm run build
+pnpm start
+```
+
+This project uses pnpm 10. If a dependency requires native build steps
+on install, keep the `pnpm.onlyBuiltDependencies` list in
+`package.json` up to date or run `pnpm approve-builds` after adding new
+dependencies.

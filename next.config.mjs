@@ -1,19 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable Portuguese locale
-  i18n: {
-    locales: ['pt-BR', 'pt'],
-    defaultLocale: 'pt-BR',
-  },
   // Optimize images
   images: {
     domains: ['placeholder.svg'],
     formats: ['image/webp', 'image/avif'],
     unoptimized: true,
-  },
-  // Enable experimental features for better performance
-  experimental: {
-    optimizeCss: true,
   },
   // Security headers
   async headers() {

@@ -1,8 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
 import { ClerkProvider } from "@clerk/nextjs"
 import { ptBR } from "@clerk/localizations"
 import { Suspense } from "react"
@@ -22,18 +19,8 @@ export default function RootLayout({
   return (
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!} localization={ptBR}>
       <html lang="pt-BR">
-        <head>
-          <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-          `}</style>
-        </head>
         <body>
           <Suspense fallback={null}>{children}</Suspense>
-          <Analytics />
         </body>
       </html>
     </ClerkProvider>

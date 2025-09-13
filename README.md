@@ -28,3 +28,8 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## Middleware
+
+Authentication is handled by [Clerk](https://clerk.com) via a single middleware located at [`middleware.ts`](middleware.ts).
+This file protects routes like `/dashboard` and `/admin` and there are no other middleware files (such as a Supabase middleware) in the codebase.

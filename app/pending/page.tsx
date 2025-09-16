@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Clock } from "lucide-react"
 import { UserButton } from "@clerk/nextjs"
 
+export const dynamic = "force-dynamic"
+
 export default async function PendingPage() {
   const { userId } = await safeAuth()
 

@@ -8,6 +8,8 @@ import { UserButton } from "@clerk/nextjs"
 import { Clock, CheckCircle, XCircle, ExternalLink, Settings } from "lucide-react"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic"
+
 interface UserApp {
   id: string
   app: {
